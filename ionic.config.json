@@ -1,0 +1,7 @@
+{
+  "name": "S-DES-Cipher",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
