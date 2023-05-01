@@ -1,0 +1,138 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cifrado S-DES para CAYD - C. Camilo Bernal Alarcón</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card class="main-card">
+          <ion-card-header>
+            <ion-card-title> Cifrador / Descifrador S-DES </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row class="ion-margin">
+              <ion-col>
+                <form [formGroup]="generarClavesForm">
+                  <ion-item>
+                    <ion-input
+                      formControlName="clave"
+                      label="Clave"
+                      labelPlacement="floating"
+                      placeholder="Ingrese una clave de 10 bits"
+                      type="number"
+                    >
+                    </ion-input>
+                  </ion-item>
+                  <ion-button
+                    class="ion-margin"
+                    [disabled]="!generarClavesForm.valid"
+                    (click)="calcularClave()"
+                  >
+                    Crear subclaves
+                  </ion-button>
+                </form>
+              </ion-col>
+              <ion-col>
+                <form [formGroup]="generarClavesForm">
+                  <ion-item>
+                    <ion-input
+                      formControlName="subclaveK1"
+                      label="Subclave K1"
+                      labelPlacement="floating"
+                      readonly="true"
+                    >
+                    </ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-input
+                      formControlName="subclaveK2"
+                      label="Subclave K2"
+                      labelPlacement="floating"
+                      readonly="true"
+                    >
+                    </ion-input>
+                  </ion-item>
+                </form>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-margin">
+              <ion-col>
+                <form [formGroup]="cifradoForm">
+                  <ion-item>
+                    <ion-input
+                      formControlName="textoClaroInput"
+                      label="Texto claro"
+                      labelPlacement="stacked"
+                      placeholder="Ingrese un bloque de 8 bits"
+                      type="number"
+                    >
+                    </ion-input>
+                  </ion-item>
+                  <ion-button
+                    class="ion-margin"
+                    [disabled]="!cifradoForm.valid || !generarClavesForm.valid"
+                    (click)="cifrar()"
+                  >
+                    Cifrar
+                  </ion-button>
+                </form>
+              </ion-col>
+              <ion-col>
+                <form [formGroup]="cifradoForm">
+                  <ion-item>
+                    <ion-input
+                      formControlName="textoCifradoOutput"
+                      label="Resultado cifrado"
+                      labelPlacement="floating"
+                      readonly="true"
+                    >
+                    </ion-input>
+                  </ion-item>
+                </form>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-margin">
+              <ion-col>
+                <form [formGroup]="descifradoForm">
+                  <ion-item>
+                    <ion-input
+                      formControlName="textoCifradoInput"
+                      label="Texto cifrado"
+                      labelPlacement="stacked"
+                      placeholder="Ingrese un bloque de 8 bits"
+                      type="number"
+                    >
+                    </ion-input>
+                  </ion-item>
+                  <ion-button
+                    class="ion-margin"
+                    [disabled]="!descifradoForm.valid || !generarClavesForm.valid"
+                    (click)="descifrar()"
+                  >
+                    Descrifrar
+                  </ion-button>
+                </form>
+              </ion-col>
+              <ion-col>
+                <form [formGroup]="descifradoForm">
+                  <ion-item>
+                    <ion-input
+                      formControlName="textoClaroOutput"
+                      label="Resultado descifrado"
+                      labelPlacement="floating"
+                      readonly="true"
+                    >
+                    </ion-input>
+                  </ion-item>
+                </form>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
